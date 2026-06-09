@@ -265,7 +265,7 @@ hr {
 @media (max-width: 640px) {
   .job-list-container {
     gap: 16px;
-    padding: 0 12px;
+    padding: 0 8px;
   }
 
   .list-header h1 {
