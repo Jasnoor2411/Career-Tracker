@@ -1,7 +1,10 @@
 @if (isAddPage()) {
   <section class="add-layout">
     <header class="top-nav">
-      <div class="brand">Career - Track</div>
+      <div class="brand-block">
+        <div class="brand">CareerTrack</div>
+        <span class="user-name mobile-user">{{ authService.activeUser()?.name }}</span>
+      </div>
 
       <nav class="top-links">
         <a routerLink="/jobs/list" class="top-link">Jobs</a>
@@ -22,7 +25,10 @@
 } @else {
   <section class="list-layout">
     <header class="compact-topbar">
-      <div class="compact-brand">CareerTrack</div>
+      <div class="brand-block">
+        <div class="compact-brand">CareerTrack</div>
+        <span class="user-name mobile-user">{{ authService.activeUser()?.name }}</span>
+      </div>
 
       <nav class="compact-links">
         <a routerLink="/jobs/list" routerLinkActive="active" class="compact-link">Jobs</a>

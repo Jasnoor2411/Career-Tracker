@@ -7,8 +7,12 @@
 
     <div class="header-actions">
       <div class="search-box">
-        <span>S</span>
-        <input type="text" placeholder="Search jobs..." [formControl]="searchControl" />
+        <span aria-hidden="true">Search</span>
+        <input
+          type="text"
+          placeholder="Search jobs..."
+          [formControl]="searchControl"
+        />
       </div>
     </div>
   </header>
@@ -17,17 +21,34 @@
     @for (job of filteredJobs$ | async; track job.id) {
       <article class="job-card">
         <div class="job-top">
-          <div class="job-logo">{{ job.companyName.charAt(0) }}</div>
+          <div class="job-logo">
+            {{ job.companyName.charAt(0) }}
+          </div>
+
           <div class="job-main">
             <h2>{{ job.role }}</h2>
             <p>{{ job.companyName }}</p>
           </div>
-          <button class="dots-btn" (click)="editJob(job)">...</button>
+
+          <button
+            class="dots-btn"
+            type="button"
+            aria-label="Edit job"
+            (click)="editJob(job)">
+            ⋮
+          </button>
         </div>
 
         <div class="chip-row">
-          <span class="chip" [class]="getStatusClass(job.status)">{{ statusLabel(job.status) }}</span>
-          <span class="chip neutral">{{ job.isRemote ? 'Remote' : 'On-site' }}</span>
+          <span
+            class="chip"
+            [class]="getStatusClass(job.status)">
+            {{ statusLabel(job.status) }}
+          </span>
+
+          <span class="chip neutral">
+            {{ job.isRemote ? 'Remote' : 'On-site' }}
+          </span>
         </div>
 
         <hr />
@@ -35,18 +56,36 @@
         <div class="card-foot">
           <div>
             <small>Package</small>
-            <strong>{{ job.package ? ('$' + job.package + 'k') : 'N/A' }}</strong>
+            <strong>
+              {{ job.package ? ('$' + job.package + 'k') : 'N/A' }}
+            </strong>
           </div>
 
           <div>
-            <small>{{ job.interviewDate ? 'Next Step' : 'Applied On' }}</small>
-            <strong>{{ job.interviewDate ? (job.interviewDate | date:'MMM d') : 'Pending' }}</strong>
+            <small>
+              {{ job.interviewDate ? 'Next Step' : 'Applied On' }}
+            </small>
+
+            <strong>
+              {{
+                job.interviewDate
+                  ? (job.interviewDate | date:'MMM d')
+                  : 'Pending'
+              }}
+            </strong>
           </div>
         </div>
 
         <div class="card-actions">
-          <button class="ghost edit" (click)="editJob(job)">Edit</button>
-          <button class="ghost delete" (click)="deleteJob(job.id!)">Delete</button>
+          <button class="ghost edit" (click)="editJob(job)">
+            Edit
+          </button>
+
+          <button
+            class="ghost delete"
+            (click)="deleteJob(job.id!)">
+            Delete
+          </button>
         </div>
       </article>
     }
@@ -54,7 +93,9 @@
     @if ((filteredJobs$ | async)?.length === 0) {
       <article class="empty-state">
         <h3>No jobs found</h3>
-        <p>Try a different company, role, or status in the search bar.</p>
+        <p>
+          Try a different company, role, or status in the search bar.
+        </p>
       </article>
     }
   </section>
