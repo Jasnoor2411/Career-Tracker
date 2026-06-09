@@ -4,7 +4,7 @@ import {
   isDevMode,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
-import { HttpHeaders, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { InMemoryCache } from '@apollo/client/core';
 import { provideApollo } from 'apollo-angular';
@@ -27,9 +27,6 @@ export const appConfig: ApplicationConfig = {
       return {
         link: httpLink.create({
           uri: environment.appsync.graphqlUrl,
-          headers: new HttpHeaders({
-            'x-api-key': environment.appsync.apiKey,
-          }),
         }),
         cache: new InMemoryCache({
           typePolicies: {
