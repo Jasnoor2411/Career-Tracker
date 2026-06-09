@@ -1,0 +1,175 @@
+.new-job-wrap {
+  max-width: 980px;
+  margin: 22px auto 40px;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: 52px;
+  line-height: 1.1;
+  color: #0f1620;
+  letter-spacing: -0.02em;
+}
+
+.page-head p {
+  margin: 10px 0 26px;
+  color: #44516b;
+  font-size: 30px;
+}
+
+.job-form {
+  border: 1px solid #aeb9bf;
+  border-radius: 12px;
+  padding: 26px 30px 30px;
+  background: #f1f3f7;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full,
+.toggle-row.full,
+.button-group.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 14px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #3d4a66;
+  font-weight: 800;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #aeb9bf;
+  border-radius: 7px;
+  background: #f7f9fb;
+  font-size: 16px;
+  color: #212b3d;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0b766e;
+  box-shadow: 0 0 0 3px rgba(11, 118, 110, 0.14);
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.toggle-row {
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.toggle-row input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle-pill {
+  width: 62px;
+  height: 34px;
+  border-radius: 999px;
+  background: #cfd5d9;
+  position: relative;
+}
+
+.toggle-pill::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  transition: transform 0.2s ease;
+}
+
+.toggle-row input:checked + .toggle-pill {
+  background: #056b62;
+}
+
+.toggle-row input:checked + .toggle-pill::after {
+  transform: translateX(28px);
+}
+
+.toggle-copy {
+  color: #1f293b;
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.button-group {
+  border-top: 1px solid #c6cdd3;
+  margin-top: 8px;
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  border: 0;
+  border-radius: 7px;
+  padding: 11px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background: #056b62;
+  color: #f2f7f6;
+}
+
+.ghost-btn {
+  background: transparent;
+  color: #0b625a;
+}
+
+.error {
+  color: #ba1e28;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .new-job-wrap {
+    margin: 10px auto 24px;
+  }
+
+  .page-head h1 {
+    font-size: 38px;
+  }
+
+  .page-head p {
+    font-size: 18px;
+  }
+
+  .job-form {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+}

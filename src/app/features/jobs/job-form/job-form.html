@@ -1,0 +1,70 @@
+<section class="new-job-wrap">
+  <header class="page-head">
+    <h1>Log New Opportunity</h1>
+    <p>Enter the details of your new job application to track its progress.</p>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="job-form">
+    <div class="form-group full">
+      <label>Company Name</label>
+      <input type="text" formControlName="companyName" placeholder="e.g. Acme Corporation" />
+      @if (form.controls.companyName.touched && form.controls.companyName.invalid) {
+        <small class="error">Company name is required</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Job Role (JR)</label>
+      <input type="text" formControlName="role" placeholder="e.g. Senior Product Designer" />
+      @if (form.controls.role.touched && form.controls.role.invalid) {
+        <small class="error">Job role is required</small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Package / Compensation</label>
+      <input type="number" formControlName="package" placeholder="e.g. 140" />
+    </div>
+
+    <div class="form-group">
+      <label>Status</label>
+      <select formControlName="status">
+        <option value="TO_APPLY">Select current stage</option>
+        <option value="APPLIED">Applied</option>
+        <option value="INTERVIEW_PENDING">Interviewing</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Next Interview Date</label>
+      <input type="date" formControlName="interviewDate" />
+    </div>
+
+    <label class="toggle-row full" for="remote">
+      <input id="remote" type="checkbox" formControlName="isRemote" />
+      <span class="toggle-pill"></span>
+      <span class="toggle-copy">This is a remote position</span>
+    </label>
+
+    <div class="form-group full">
+      <label>Job Description (JD)</label>
+      <textarea formControlName="jd" rows="6" placeholder="Paste key responsibilities and requirements here..."></textarea>
+    </div>
+
+    <div class="button-group full">
+      @if (selectedJob) {
+        <button type="button" class="ghost-btn" (click)="reset()">Cancel</button>
+      } @else {
+        <span></span>
+      }
+
+      <button type="submit">
+        @if (selectedJob) {
+          Update Opportunity
+        } @else {
+          Save Opportunity
+        }
+      </button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #eef0f4;
+  color: #121826;
+  font-family: "Avenir Next", "Nunito Sans", "Segoe UI", sans-serif;
+}
