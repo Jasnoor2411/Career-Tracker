@@ -136,7 +136,7 @@
 .list-content-full {
   max-width: 1280px;
   margin: 0 auto;
-
+  width: 100%;
 }
 
 /* ── Mobile bottom tab bar — hidden on desktop ── */
@@ -161,10 +161,20 @@
     font-size: 19px;
   }
 
-  /* Hide username and logout from top nav on mobile —
-     logout lives in a profile area or menu instead */
+  /* Keep logout button visible; hide the username text — too wide on mobile */
   .top-right {
+    display: flex;
+    min-width: 0;
+  }
+
+  .top-right .user-name {
     display: none;
+  }
+
+  .logout-btn {
+    padding: 8px 11px;
+    min-height: 36px;
+    font-size: 13px;
   }
 
   /* Slightly smaller pills */
