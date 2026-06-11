@@ -12,7 +12,8 @@
 }
 
 .login-panel {
-  width:70%;
+  width: 70%;
+  max-width: 430px;
   border: 1px solid #adb7be;
   border-radius: 8px;
   background: #f7f8fb;
