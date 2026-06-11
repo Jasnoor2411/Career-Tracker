@@ -69,7 +69,6 @@
   appearance: none;
   -webkit-appearance: none;
   transition: border-color 0.15s, box-shadow 0.15s;
-  width: 100%;
 }
 
 .form-group input:focus,
