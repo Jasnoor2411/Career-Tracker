@@ -7,10 +7,13 @@
 
     <div class="header-actions">
       <div class="search-box">
-        <span aria-hidden="true">Search</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
         <input
           type="text"
-          placeholder="Search jobs..."
+          placeholder="Search by role or company..."
           [formControl]="searchControl"
         />
       </div>
@@ -21,7 +24,7 @@
     @for (job of filteredJobs$ | async; track job.id) {
       <article class="job-card">
         <div class="job-top">
-          <div class="job-logo">
+          <div class="job-logo" aria-hidden="true">
             {{ job.companyName.charAt(0) }}
           </div>
 
@@ -33,7 +36,7 @@
           <button
             class="dots-btn"
             type="button"
-            aria-label="Edit job"
+            [attr.aria-label]="'Options for ' + job.role"
             (click)="editJob(job)">
             ⋮
           </button>
@@ -54,18 +57,17 @@
         <hr />
 
         <div class="card-foot">
-          <div>
+          <div class="card-foot-item">
             <small>Package</small>
             <strong>
               {{ job.package ? ('$' + job.package + 'k') : 'N/A' }}
             </strong>
           </div>
 
-          <div>
+          <div class="card-foot-item">
             <small>
               {{ job.interviewDate ? 'Next Step' : 'Applied On' }}
             </small>
-
             <strong>
               {{
                 job.interviewDate
@@ -93,9 +95,7 @@
     @if ((filteredJobs$ | async)?.length === 0) {
       <article class="empty-state">
         <h3>No jobs found</h3>
-        <p>
-          Try a different company, role, or status in the search bar.
-        </p>
+        <p>Try a different company, role, or status in the search bar.</p>
       </article>
     }
   </section>

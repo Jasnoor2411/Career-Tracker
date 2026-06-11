@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group">
-      <label>Job Role (JR)</label>
+      <label>Job Role</label>
       <input type="text" formControlName="role" placeholder="e.g. Senior Product Designer" />
       @if (form.controls.role.touched && form.controls.role.invalid) {
         <small class="error">Job role is required</small>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-      <label>Package / Compensation</label>
+      <label>Package / Compensation (k)</label>
       <input type="number" formControlName="package" placeholder="e.g. 140" />
     </div>
 
@@ -43,11 +43,11 @@
     <label class="toggle-row full" for="remote">
       <input id="remote" type="checkbox" formControlName="isRemote" />
       <span class="toggle-pill"></span>
-      <span class="toggle-copy">This is a remote position</span>
+      <span class="toggle-copy">Remote position</span>
     </label>
 
     <div class="form-group full">
-      <label>Job Description (JD)</label>
+      <label>Job Description (optional)</label>
       <textarea formControlName="jd" rows="6" placeholder="Paste key responsibilities and requirements here..."></textarea>
     </div>
 
@@ -58,7 +58,7 @@
         <span></span>
       }
 
-      <button type="submit">
+      <button type="submit" class="submit-btn">
         @if (selectedJob) {
           Update Opportunity
         } @else {

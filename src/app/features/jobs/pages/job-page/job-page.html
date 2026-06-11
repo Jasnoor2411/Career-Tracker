@@ -3,13 +3,11 @@
     <header class="top-nav">
       <div class="brand-block">
         <div class="brand">CareerTrack</div>
-        <span class="user-name mobile-user">{{ authService.activeUser()?.name }}</span>
       </div>
 
       <nav class="top-links">
         <a routerLink="/jobs/list" class="top-link">Jobs</a>
         <a routerLink="/jobs/new" routerLinkActive="active" class="top-link" (click)="startNewJob()">Add New</a>
-        <!-- <a class="top-link muted">Analytics</a> -->
       </nav>
 
       <div class="top-right">
@@ -27,7 +25,6 @@
     <header class="compact-topbar">
       <div class="brand-block">
         <div class="compact-brand">CareerTrack</div>
-        <span class="user-name mobile-user">{{ authService.activeUser()?.name }}</span>
       </div>
 
       <nav class="compact-links">
@@ -46,3 +43,21 @@
     </main>
   </section>
 }
+
+<!-- Mobile bottom tab bar (shown via CSS on small screens) -->
+<nav class="mobile-tab-bar" aria-label="Main navigation">
+  <a routerLink="/jobs/list" routerLinkActive="tab-active" class="tab-item">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+    </svg>
+    <span>Jobs</span>
+  </a>
+  <a routerLink="/jobs/new" routerLinkActive="tab-active" class="tab-item" (click)="startNewJob()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
+    </svg>
+    <span>Add New</span>
+  </a>
+</nav>

@@ -9,12 +9,14 @@
   min-height: 100vh;
 }
 
+/* ── Page layouts ── */
 .add-layout,
 .list-layout {
   min-height: 100vh;
   background: var(--bg);
 }
 
+/* ── Top nav (shared base) ── */
 .top-nav,
 .compact-topbar {
   border-bottom: 1px solid var(--line);
@@ -26,26 +28,28 @@
   background: rgba(248, 250, 252, 0.94);
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 10;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
+/* ── Brand ── */
 .brand-block {
-  display: grid;
-  gap: 3px;
-  min-width: 170px;
+  min-width: 0;
+  flex-shrink: 0;
 }
 
 .brand,
 .compact-brand {
   color: var(--brand);
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 700;
-  letter-spacing: 0;
   font-family: "Avenir Next Condensed", "Trebuchet MS", sans-serif;
+  white-space: nowrap;
 }
 
+/* ── Nav pills ── */
 .top-links,
 .compact-links {
   display: flex;
@@ -55,6 +59,7 @@
   border: 1px solid #d3d9df;
   border-radius: 8px;
   background: #eef2f5;
+  flex-shrink: 0;
 }
 
 .top-link,
@@ -64,12 +69,14 @@
   font-size: 15px;
   font-weight: 700;
   line-height: 1;
-  padding: 10px 14px;
+  padding: 10px 16px;
   border-radius: 6px;
   min-height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
 }
 
 .top-link.active,
@@ -79,56 +86,36 @@
   box-shadow: 0 1px 3px rgba(23, 32, 51, 0.08);
 }
 
-.top-link.muted {
-  opacity: 0.9;
-}
-
+/* ── Right side ── */
 .top-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  min-width: 170px;
-}
-
-.icon-chip,
-.avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid #b8c0c5;
-  display: grid;
-  place-items: center;
-  color: #3f4960;
-  background: #f7f8fb;
-  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .user-name {
   color: var(--muted);
   font-weight: 700;
-  max-width: 160px;
+  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.mobile-user {
-  display: none;
-  font-size: 13px;
-  font-weight: 600;
-}
-
 .logout-btn {
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 10px 14px;
-  min-height: 40px;
+  padding: 9px 14px;
+  min-height: 38px;
   background: var(--panel);
   color: #344258;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
 }
 
 .logout-btn:hover {
@@ -136,7 +123,12 @@
   color: var(--brand);
 }
 
-.add-content,
+/* ── Page content ── */
+.add-content {
+  padding: 28px;
+  max-width: 780px;
+}
+
 .list-content {
   padding: 28px;
 }
@@ -147,55 +139,91 @@
   width: 100%;
 }
 
+/* ── Mobile bottom tab bar — hidden on desktop ── */
+.mobile-tab-bar {
+  display: none;
+}
+
+/* ════════════════════════════════
+   MOBILE  (≤ 800px)
+   ════════════════════════════════ */
 @media (max-width: 800px) {
+
+  /* Nav: brand left, pills right, no right section */
   .top-nav,
   .compact-topbar {
-    padding: 12px 14px 14px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 12px;
+    padding: 10px 14px;
+    gap: 10px;
   }
 
   .brand,
   .compact-brand {
-    font-size: 22px;
+    font-size: 19px;
   }
 
-  .brand-block,
+  /* Hide username and logout from top nav on mobile —
+     logout lives in a profile area or menu instead */
   .top-right {
-    min-width: 0;
-  }
-
-  .top-right .user-name {
     display: none;
   }
 
-  .mobile-user {
-    display: block;
-  }
-
-  .top-links,
-  .compact-links {
-    grid-column: 1 / -1;
-    width: 100%;
-    gap: 4px;
-  }
-
+  /* Slightly smaller pills */
   .top-link,
   .compact-link {
-    flex: 1;
-    min-height: 42px;
-    padding: 10px 12px;
+    font-size: 13px;
+    padding: 8px 12px;
+    min-height: 36px;
   }
 
-  .logout-btn {
-    min-height: 42px;
-    padding: 10px 12px;
-  }
-
+  /* Page content gets bottom padding so the fixed tab bar
+     never overlaps real content */
   .add-content,
   .list-content {
-    padding: 18px 14px 28px;
+    padding: 18px 14px 90px; /* 90px = tab bar height + safe area buffer */
+  }
+
+  /* ── Bottom tab bar ── */
+  .mobile-tab-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(248, 250, 252, 0.97);
+    border-top: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 20;
+    padding: 8px 0;
+    /* Respect notch / home indicator on iOS */
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-decoration: none;
+    color: #99a8b8;
+    padding: 4px 8px;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.15s;
+  }
+
+  .tab-item svg {
+    stroke: currentColor;
+  }
+
+  .tab-item span {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .tab-item.tab-active,
+  .tab-item:hover {
+    color: var(--brand);
   }
 }
