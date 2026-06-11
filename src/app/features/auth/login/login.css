@@ -12,7 +12,7 @@
 }
 
 .login-panel {
-  width: min(100%, 420px);
+  width:70px;
   border: 1px solid #adb7be;
   border-radius: 8px;
   background: #f7f8fb;
@@ -76,7 +76,6 @@
 }
 
 .login-form input {
-  width: 100%;
   border: 1px solid #adb7be;
   border-radius: 6px;
   padding: 13px 14px;
